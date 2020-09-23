@@ -38,7 +38,7 @@ def Parse(worldData=None):
             location = { 
                 "name" : state["fullName"],
                 "image_url" : image_url,
-                "entry": "\n<p>Lorem Ipsum.</p>\n",
+                "entry": GenerateEntry(worldData, state),
                 "parent_location_id" : worldData["world_location_id"],
                 "is_private": False,
                 "type": "State"
@@ -106,3 +106,30 @@ def Parse(worldData=None):
                         attitude = diplomacyValues[diplomacy]["attitude"],
                         colour = diplomacyValues[diplomacy]["colour"])
     
+
+def GenerateEntry(worldData, state):
+    # count biomes
+    biomeCount = {}
+    total = 0
+    
+    for cellIndex, biome in enumerate(worldData["map"]["pack"]["cells"]["biome"]):
+        if int(worldData["map"]["pack"]["cells"]["state"][cellIndex]) == int(state["i"]):
+            biomeCount[biome] = biomeCount.get(biome, 0) + 1
+            total += 1
+
+    sortedBiomeCount = sorted(biomeCount.items(), key=lambda x: x[1], reverse=True)
+    biomesString = f'<h2>Biomes</h2>'
+
+    biomesString += '<table><tr><th>Biome</th><th>Percent</th><tr>'
+    for biomeTuple in sortedBiomeCount:
+        biomeId = biomeTuple[0]
+        count = biomeTuple[1]
+        percent = count / total * 100
+        if options["entities.biomes"]:
+            mention = f'[note:{worldData["biome_data"][int(biomeId)]["entity_id"]}]'
+        else:
+            mention = worldData["map"]["biomesData"]["name"][int(biomeId)]
+        biomesString += f'<tr><td>{mention}</td><td>{format(percent, ".2f")}%</td></tr>'
+    biomesString += '</table>'
+
+    return f"\n{biomesString}\n"
