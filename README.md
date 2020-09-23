@@ -17,7 +17,8 @@ A small set of python scripts to generate a world in Kanka using the API.
 
    ```& C:/Python38/python.exe .\atk.py '.\Foyersia 2020-09-23-00-39.json'```
 6. Go get your Kanka campaign id <https://kanka.io/en/>
-7. Go get your Kanka bearer token <https://kanka.io/en/settings/api>
-8. Create a 'kanka.token' file and save your bearer token in it as the only content.
-9. Open up config.py and change 'active' to 'True'.
-10. Run atk.py to parse the .json and this time create the parsed elements in Kanka.
+7. Update config.py and change the 'campaignId' to **your** campaign id.
+8. Go get your Kanka bearer token <https://kanka.io/en/settings/api>
+9. Create a 'kanka.token' file and save your bearer token in it as the only content.
+10. Open up config.py and change 'active' to 'True'.
+11. Run atk.py to parse the .json and this time create the parsed elements in Kanka.
