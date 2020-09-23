@@ -8,7 +8,7 @@ __status__ = "Prototype"
 
 # Usage:
 #  Windows:
-#   & C:/Python38/python.exe .\atk.py '.\Foyersia 2020-09-08-00-00.json'
+#   & C:/Python38/python.exe .\atk.py '.\Foyersia 2020-09-23-00-39.json'
 
 import json
 import sys
