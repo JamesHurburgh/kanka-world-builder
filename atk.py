@@ -33,8 +33,8 @@ with open(path,'rb') as mapfile:
 worldData = {}
 worldData["map"] = map
 
-e_world.Parse(worldData)
 e_biomes.Parse(worldData)
+e_world.Parse(worldData)
 e_timelines.Parse(worldData)
 e_rivers.Parse(worldData)
 e_states.Parse(worldData)
