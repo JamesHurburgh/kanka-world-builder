@@ -76,7 +76,7 @@ else:
 Initialize biomesData as in 'applyDefaultBiomesSystem()' in 'main.js'
 """
 biomesData = {}
-biomesData["name"] = ["Marine","Hot desert","Cold desert","Savanna","Grassland","Tropical seasonal forest","Temperate deciduous forest","Tropical rain forest","Temperate rain forest","Taiga","Tundra","Glacier"]
+biomesData["name"] = ["Marine","Hot desert","Cold desert","Savanna","Grassland","Tropical seasonal forest","Temperate deciduous forest","Tropical rain forest","Temperate rain forest","Taiga","Tundra","Glacier","Wetlands"]
 biomesData["color"] = ["#53679f","#fbe79f","#b5b887","#d2d082","#c8d68f","#b6d95d","#29bc56","#7dcb35","#45b348","#4b6b32","#96784b","#d5e7eb"]
 
 biomesData["i"] = list(range(0, len(biomesData["name"])))
