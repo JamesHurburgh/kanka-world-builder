@@ -1,5 +1,6 @@
 from config import options
 import kankaapi
+import azgaar
 
 def Parse(worldData=None):
     if not options["entities.world"]:
@@ -24,6 +25,9 @@ def Parse(worldData=None):
     worldData["world_entity_id"] = response["data"]["entity_id"]
 
 def GenerateEntry(worldData):
+    return GenerateBiomeEntry(worldData) + GenerateElevationEntry(worldData)
+    
+def GenerateBiomeEntry(worldData):
     # count biomes
     biomeCount = {}
     total = 0
@@ -48,3 +52,16 @@ def GenerateEntry(worldData):
     biomesString += '</table>'
 
     return f"\n{biomesString}\n"
+    
+def GenerateElevationEntry(worldData):
+    
+    azgaarSettings = worldData["map"]["settings"]
+    allCells = worldData["map"]["grid"]["cells"]["h"]
+    heightMap = list(azgaar.getRawHeight(azgaarSettings, int(h), False) for h in allCells)
+
+    entry = f'<h2>Elevation</h2>'
+    entry += f'<p>Minimum: {min(heightMap)} {azgaarSettings["heightUnit"]}</p>'
+    entry += f'<p>Maximum: {max(heightMap)} {azgaarSettings["heightUnit"]}</p>'
+    entry += f'<p>Average: {format(sum(heightMap) / len(heightMap), ".2f")} {azgaarSettings["heightUnit"]}</p>'
+
+    return f"\n{entry}\n"
